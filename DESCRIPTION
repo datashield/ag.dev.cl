@@ -1,0 +1,14 @@
+Package: dsbaseclientongoing.ag
+Maintainer: <datashield@obiba.org>
+Author: <datashield@obiba.org>
+Version: 1.3
+License: GPL-3
+Title: dsbaseclientongoing.ag
+Description: dsbaseclientongoing.ag
+Depends:
+    opal
+Collate:
+    'datashield.contour.plot.R'
+    'datashield.heatmap.plot.R'
+    'datashield.histogram.R'
+    'datashield.table.2d.R'

@@ -1,0 +1,4 @@
+export(datashield.contour.plot)
+export(datashield.heatmap.plot)
+export(datashield.histogram)
+export(datashield.table.2d)
