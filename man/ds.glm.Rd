@@ -5,37 +5,35 @@
   ds.glm(opals, formula, family, maxit = 10)
 }
 \arguments{
-  \item{\code{opals}}{a character strings that represent
-  the URL of the servers where the study datasets are
-  stored}
+  \item{opals}{a character strings that represent the URL
+  of the servers where the study datasets are stored}
 
-  \item{\code{formula}}{an object of class 'formula' which
+  \item{formula}{an object of class \code{formula} which
   describes the model to be fitted}
 
-  \item{\code{family}}{a description of the error
-  distribution function to use in the model}
+  \item{family}{a description of the error distribution
+  function to use in the model}
 
-  \item{\code{maxit}}{the number of iterations of IWLS
-  used}
+  \item{maxit}{the number of iterations of IWLS used}
 }
 \value{
-  \code{coefficients} a named vector of coefficients
+  coefficients a named vector of coefficients
 
-  \code{residuals} the _working_ residuals, that is the
-  residuals in the final iteration of the IWLS fit.
+  residuals the 'working' residuals, that is the residuals
+  in the final iteration of the IWLS fit.
 
-  \code{fitted.values} the fitted mean values, obtained by
+  fitted.values the fitted mean values, obtained by
   transforming the linear predictors by the inverse of the
   link function.
 
-  \code{rank} the numeric rank of the fitted linear model.
+  rank the numeric rank of the fitted linear model.
 
-  \code{family} the ‘family’ object used.
+  family the \code{family} object used.
 
-  \code{linear.predictors} the linear fit on link scale.
+  linear.predictors the linear fit on link scale.
 
-  \code{aic} A version of Akaike's _An Information
-  Criterion_, which tells how well the model fits
+  aic A version of Akaike's An Information Criterion, which
+  tells how well the model fits
 }
 \description{
   This function allows for the fitting of generalized
@@ -43,12 +41,12 @@
 }
 \details{
   It enables a parallelized analysis of individual-level
-  data sitting on distinct computers/servers by sending
-  instructions to each computer requesting non-disclosing
-  summary statistics. The sumaries are then combined to
-  estimate the parameters of the model; these parameters
-  are the same as those obtained if the data were
-  'physically' pooled.
+  data sitting on distinct servers by sending instructions
+  to each computer requesting non-disclosing summary
+  statistics. The sumaries are then combined to estimate
+  the parameters of the model; these parameters are the
+  same as those obtained if the data were 'physically'
+  pooled.
 }
 \examples{
 {

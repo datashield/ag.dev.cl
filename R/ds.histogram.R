@@ -1,5 +1,7 @@
 #' Computes and plots histogram of the given data values.
 #' @title Plots a histogram 
+#' @param opals a character strings that represent the URL of the servers where 
+#' the study datasets are stored
 #' @param a vector of values for which the histogram is desired.
 #' @return a histogram.
 #' @author Burton, P.

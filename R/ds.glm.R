@@ -2,25 +2,25 @@
 #' 
 #' @title Runs a combined GLM analysis of non-pooled data
 #'
-#' @param \code{opals} a character strings that represent the URL of the servers where 
+#' @param opals a character strings that represent the URL of the servers where 
 #' the study datasets are stored
-#' @param \code{formula} an object of class 'formula' which describes the model to be fitted
-#' @param \code{family} a description of the error distribution function to use in the model
-#' @param \code{maxit} the number of iterations of IWLS used
+#' @param formula an object of class \code{formula} which describes the model to be fitted
+#' @param family a description of the error distribution function to use in the model
+#' @param maxit the number of iterations of IWLS used
 #' @details It enables a parallelized analysis of individual-level data sitting 
-#' on distinct computers/servers by sending 
+#' on distinct servers by sending 
 #' instructions to each computer requesting non-disclosing summary statistics.
 #' The sumaries are then combined to estimate the parameters of the model; these 
 #' parameters are the same as those obtained if the data were 'physically' pooled.
-#' @return \code{coefficients} a named vector of coefficients
-#' @return \code{residuals} the _working_ residuals, that is the residuals in the final
+#' @return coefficients a named vector of coefficients
+#' @return residuals the 'working' residuals, that is the residuals in the final
 #' iteration of the IWLS fit.
-#' @return \code{fitted.values} the fitted mean values, obtained by transforming the
+#' @return fitted.values the fitted mean values, obtained by transforming the
 #' linear predictors by the inverse of the link function.
-#' @return \code{rank} the numeric rank of the fitted linear model.
-#' @return \code{family} the ‘family’ object used.
-#' @return \code{linear.predictors} the linear fit on link scale.
-#' @return \code{aic} A version of Akaike's _An Information Criterion_, which tells how 
+#' @return rank the numeric rank of the fitted linear model.
+#' @return family the \code{family} object used.
+#' @return linear.predictors the linear fit on link scale.
+#' @return aic A version of Akaike's An Information Criterion, which tells how 
 #' well the model fits
 #' @author Burton, P.; Laflamme, P.; Gaye, A.
 #' @examples

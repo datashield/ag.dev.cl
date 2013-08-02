@@ -1,3 +1,4 @@
 export(ds.contour.plot)
 export(ds.glm)
 export(ds.histogram)
+export(ds.login)
