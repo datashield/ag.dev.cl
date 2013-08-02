@@ -1,0 +1,4 @@
+servers,url,userID,pwd,opalPath
+server1,http://54.242.140.255,administrator,password,CNSIM.CNSIM
+server2,http://54.242.46.59,administrator,password,CNSIM.CNSIM
+server3,http://23.22.215.42,administrator,password,CNSIM.CNSIM

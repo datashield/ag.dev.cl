@@ -1,8 +1,8 @@
-\name{datashield.histogram}
-\alias{datashield.histogram}
+\name{ds.histogram}
+\alias{ds.histogram}
 \title{Plots a histogram}
 \usage{
-  datashield.histogram(opals, a)
+  ds.histogram(opals, a)
 }
 \arguments{
   \item{a}{vector of values for which the histogram is

@@ -1,4 +1,3 @@
-export(datashield.contour.plot)
-export(datashield.heatmap.plot)
-export(datashield.histogram)
-export(datashield.table.2d)
+export(ds.contour.plot)
+export(ds.glm)
+export(ds.histogram)
