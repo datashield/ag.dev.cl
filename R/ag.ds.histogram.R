@@ -7,7 +7,7 @@
 #' @author Burton, P.
 #' @export
 #' 
-ds.histogram <- function (opals, a) {
+ag.ds.histogram <- function (opals, a) {
   
   # call the helper function and use its output
   cally <- call("histogram.1", a) 

@@ -7,8 +7,3 @@ Title: ag.dev.cl
 Description: ag.dev.cl
 Depends:
     opal
-Collate:
-    'ds.contour.plot.R'
-    'ds.glm.R'
-    'ds.histogram.R'
-    'ds.login.R'

@@ -20,9 +20,9 @@
 #' 
 #' # Example 2: login and assign specific variable(s)
 #' myvariables <- list("LAB_TSC")
-#' opals <- ds.login(logins=logindata,variables=,myvariables)}
+#' opals <- ag.ds.login(logins=logindata,variables=,myvariables)}
 #' 
-ds.login <- function(logins,variables=NULL){
+ag.ds.login <- function(logins,variables=NULL){
 
   # if the user does not specify variables (default behaviour)
   # display a message telling the user that the whole dataset

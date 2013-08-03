@@ -23,15 +23,22 @@
 #' @return aic A version of Akaike's An Information Criterion, which tells how 
 #' well the model fits
 #' @author Burton, P.; Laflamme, P.; Gaye, A.
-#' @examples
+#' @example
 #'{
-#' # put example here
+#' # load that contains the login details
+#' data(logindata)
+#' 
+#' # login and assign some variables to R
+#' myvariables <- list("DIS_DIAB","PM_BMI_CONTINUOUS","LAB_HDL" )
+#' opals <- ag.ds.login(logins=logindata,variables=myvariables)
+#' 
+#' # run a GLM (e.g. diabestes prediction using BMI and HDL level)
+#'  mod <- ag.ds.glm(opals=opals,formula=DIS_DIAB~PM_BMI_CONTINUOUS+LAB_HDL,family=quote(binomial), maxit=quote(20))
 #'}
 #' @export
 #'
-ds.glm <- function(opals, formula, family, maxit=10) {
+ag.ds.glm <- function(opals, formula, family, maxit=10) {
   numstudies<-length(opals)
-  
   beta.vect.next<-NULL
   
   #Iterations need to be counted. Start off with the count at 0
@@ -70,8 +77,6 @@ ds.glm <- function(opals, formula, family, maxit=10) {
     score.vect.total<-Reduce(f="+", .select(study.summary, 'score.vect'))
     dev.total<-Reduce(f="+", .select(study.summary, 'dev'))
     
-    
-    
     if(iteration.count==1) {
       # Sum participants only during first iteration.
       nsubs.total<-Reduce(f="+", .select(study.summary, 'numsubs'))
@@ -82,13 +87,9 @@ ds.glm <- function(opals, formula, family, maxit=10) {
     #Create variance covariance matrix as inverse of information matrix
     variance.covariance.matrix.total<-solve(info.matrix.total)
     
-    
-    
     #Create beta vector update terms
     beta.update.vect<-variance.covariance.matrix.total %*% score.vect.total
-    
-    
-    
+  
     #Add update terms to current beta vector to obtain new beta vector for next iteration
     if(is.null(beta.vect.next)) {
       beta.vect.next<-beta.update.vect
@@ -135,7 +136,6 @@ ds.glm <- function(opals, formula, family, maxit=10) {
     }
     
     se.vect.final <- sqrt(diag(variance.covariance.matrix.total)) * sqrt(scale.par)
-    
     z.vect.final<-beta.vect.final/se.vect.final
     pval.vect.final<-2*pnorm(-abs(z.vect.final))
     parameter.names<-names(score.vect.total[,1])

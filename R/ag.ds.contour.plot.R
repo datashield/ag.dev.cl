@@ -7,7 +7,7 @@
 #' @return a contour plot.
 #' @author Burton, P.
 #' @export
-ds.contour.plot <- function(opals, xvect, yvect){
+ag.ds.contour.plot <- function(opals, xvect, yvect){
   
   # generate the grid density object to plot
   cally <- call("density.grid.ag", xvect, yvect) 
