@@ -23,7 +23,7 @@
 #' @return aic A version of Akaike's An Information Criterion, which tells how 
 #' well the model fits
 #' @author Burton, P.; Laflamme, P.; Gaye, A.
-#' @example
+#' @examples
 #'{
 #' # load that contains the login details
 #' data(logindata)
@@ -33,7 +33,7 @@
 #' opals <- ag.ds.login(logins=logindata,variables=myvariables)
 #' 
 #' # run a GLM (e.g. diabestes prediction using BMI and HDL level)
-#'  mod <- ag.ds.glm(opals=opals,formula=DIS_DIAB~PM_BMI_CONTINUOUS+LAB_HDL,family=quote(binomial), maxit=quote(20))
+#'  mod <- ag.ds.glm(opals=opals,formula=DIS_DIAB~PM_BMI_CONTINUOUS+LAB_HDL,family=quote(binomial))
 #'}
 #' @export
 #'

@@ -1,4 +1,4 @@
-dsbaseclientongoing.ag
+ag.dev.cl
 ======================
 
-Package dsbase client being rebuilt and checked by A. Gaye
+Amadou Gaye Development Zone for Client Functions

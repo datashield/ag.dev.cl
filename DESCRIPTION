@@ -6,4 +6,10 @@ License: GPL-3
 Title: ag.dev.cl
 Description: ag.dev.cl
 Depends:
-    opal
+    opal,
+    opaladmin
+Collate:
+    'ag.ds.contour.plot.R'
+    'ag.ds.histogram.R'
+    'ag.ds.login.R'
+    'ag.ds.glm.R'
