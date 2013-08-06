@@ -55,10 +55,10 @@ data(logindata)
 
 # login and assign some variables to R
 myvariables <- list("DIS_DIAB","PM_BMI_CONTINUOUS","LAB_HDL" )
-opals <- ag.ds.login(logins=logindata,variables=myvariables)
+opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvariables)
 
-# run a GLM (e.g. diabestes prediction using BMI and HDL level)
- mod <- ag.ds.glm(opals=opals,formula=DIS_DIAB~PM_BMI_CONTINUOUS+LAB_HDL,family=quote(binomial))
+# run a GLM (e.g. diabetes prediction using BMI and HDL level)
+ mod <- ag.ds.glm(opals=opals,formula=D$DIS_DIAB~D$PM_BMI_CONTINUOUS+D$LAB_HDL,family=quote(binomial))
 }
 }
 \author{
