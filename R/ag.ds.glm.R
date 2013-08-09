@@ -23,18 +23,17 @@
 #' @return aic A version of Akaike's An Information Criterion, which tells how 
 #' well the model fits
 #' @author Burton, P.; Laflamme, P.; Gaye, A.
-#' @examples
-#'{
+#' @examples {
 #' # load the file that contains the login details
 #' data(logindata)
 #' 
 #' # login and assign some variables to R
-#' myvariables <- list("DIS_DIAB","PM_BMI_CONTINUOUS","LAB_HDL" )
-#' opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvariables)
+#' myvar <- list("DIS_DIAB","PM_BMI_CONTINUOUS","LAB_HDL" )
+#' opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvar)
 #' 
 #' # run a GLM (e.g. diabetes prediction using BMI and HDL level)
 #'  mod <- ag.ds.glm(opals=opals,formula=D$DIS_DIAB~D$PM_BMI_CONTINUOUS+D$LAB_HDL,family=quote(binomial))
-#'}
+#' }
 #' @export
 #'
 ag.ds.glm <- function(opals, formula, family, maxit=10) {

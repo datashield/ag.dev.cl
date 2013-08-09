@@ -42,8 +42,8 @@ opals <- ag.ds.login(logins=logindata)
 opals <- ag.ds.login(logins=logindata,assign=TRUE)
 
 # Example 3: login and assign specific variable(s)
-myvariables <- list("LAB_TSC")
-opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvariables)
+myvar <- list("LAB_TSC")
+opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvar)
 }
 }
 \author{
