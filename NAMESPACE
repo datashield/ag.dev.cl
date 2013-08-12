@@ -1,4 +1,3 @@
 export(ag.ds.contour.plot)
 export(ag.ds.glm)
-export(ag.ds.histogram)
 export(ag.ds.login)
