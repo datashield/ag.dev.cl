@@ -40,7 +40,7 @@ ag.ds.glm <- function(opals, formula, family, maxit=10) {
   
   # check that the variables in the formula are available from all the studies
   # exclude studies where one or more variables are missing
-  opals <- ag.ds.varexist(opals, formula)
+  opals <- ag.ds.varexist1(opals, formula)
   
   numstudies<-length(opals)
   beta.vect.next<-NULL

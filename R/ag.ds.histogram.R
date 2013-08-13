@@ -1,4 +1,43 @@
-
+#' 
+#' @title Plots a histogram 
+#' @description This function plots histogram of the given data values.
+#' It calls a datashield server side function that produces the
+#' histogram objects to plot. The objects to plot do not contain bins with
+#' counts < 5. The function allows for the user to plot disctinct histograms
+#' (one for each study) or a combine histogram that merges the single plots.
+#' @param opals a character strings that represent the URL of the servers where 
+#' the study datasets are stored.
+#' @param numvect vector of values for which the histogram is desired.
+#' @param type a character which represent the type of graph to display. 
+#' If \code{type} is set to 'combine', a histogram that merges the single 
+#' plot is displayed. Each histogram is plotted separately if If \code{type} 
+#' is set to 'split'.
+#' @return one or more histogram plot depending on the argument \code{type}
+#' @author Gaye, A.
+#' @export
+#' @examples {
+#' # load that contains the login details
+#' data(logindata)
+#' 
+#' # login and assign specific variable(s)
+#' myvar <- list("LAB_TSC")
+#' opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvar)
+#' 
+#' # show the name of the studies/servers
+#' names(opals)
+#' 
+#' # Example 1: plot a combined histogram of the variable 'LAB_TSC' - default behaviour
+#' ag.ds.histogram(opals=opals, numvect=quote(D$LAB_TSC))
+#' 
+#' # Example 2: Plot the histograms separately (one per study)
+#'  ag.ds.histogram(opals=opals, numvect=quote(D$LAB_TSC), type="split")
+#'  
+#' # Example 3: Plot the histograms of the first and second study
+#'  ag.ds.histogram(opals=opals[1:2], numvect=quote(D$LAB_TSC), type="split")
+#'
+#' # Example 4: Plot the histogram of the third study only
+#'  ag.ds.histogram(opals=opals[3], numvect=quote(D$LAB_TSC), type="split")
+#' }
 
 ag.ds.histogram <- function(opals=NULL, numvect=NULL, type="combine"){
 
