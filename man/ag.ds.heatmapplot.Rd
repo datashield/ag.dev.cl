@@ -1,8 +1,8 @@
-\name{ag.ds.contour.plot}
-\alias{ag.ds.contour.plot}
-\title{Creates a contour plot}
+\name{ag.ds.heatmapplot}
+\alias{ag.ds.heatmapplot}
+\title{Generates a heatmap plot for merged datasets}
 \usage{
-  ag.ds.contour.plot(opals, xvect, yvect)
+  ag.ds.heatmapplot(opals, xvect, yvect)
 }
 \arguments{
   \item{opals}{a list of opal object(s) obtained after
@@ -15,12 +15,12 @@
   \item{yvect}{a numerical vector}
 }
 \value{
-  a contour plot.
+  a heatmap plot
 }
 \description{
-  Generates a contour plot of the given data values.
+  Generates a heatmap plot for merged datasets
 }
 \author{
-  Burton, P.
+  Isaeva, J.
 }
 

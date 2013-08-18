@@ -1,7 +1,8 @@
 #' Generates a contour plot of the given data values.
 #' @title Creates a contour plot
-#' @param opals character strings that represent the URL of the servers where 
-#' the study datasets are stored.
+#' @param opals a list of opal object(s) obtained after login in to opal servers;
+#' these objects hold also the data assign to R, as \code{dataframe}, from opal 
+#' datasources.
 #' @param xvect a numerical vector 
 #' @param yvect a numerical vector
 #' @return a contour plot.

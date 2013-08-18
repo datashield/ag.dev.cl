@@ -2,8 +2,9 @@
 #' 
 #' @title Runs a combined GLM analysis of non-pooled data
 #'
-#' @param opals a character strings that represent the URL of the servers where 
-#' the study datasets are stored
+#' @param opals a list of opal object(s) obtained after login in to opal servers;
+#' these objects hold also the data assign to R, as \code{dataframe}, from opal 
+#' datasources.
 #' @param formula an object of class \code{formula} which describes the model to be fitted
 #' @param family a description of the error distribution function to use in the model
 #' @param maxit the number of iterations of IWLS used
@@ -23,12 +24,12 @@
 #' @return aic A version of Akaike's An Information Criterion, which tells how 
 #' well the model fits
 #' @author Burton, P.; Laflamme, P.; Gaye, A.
-#' @examples {
+#' @examples \dontrun{
 #' # load the file that contains the login details
 #' data(logindata)
 #' 
 #' # login and assign some variables to R
-#' myvar <- list("DIS_DIAB","PM_BMI_CONTINUOUS","LAB_HDL" )
+#' myvar <- list("DIS_DIAB","PM_BMI_CONTINUOUS","LAB_HDL")
 #' opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvar)
 #' 
 #' # run a GLM (e.g. diabetes prediction using BMI and HDL level)
@@ -38,9 +39,24 @@
 #'
 ag.ds.glm <- function(opals, formula, family, maxit=10) {
   
-  # check that the variables in the formula are available from all the studies
-  # exclude studies where one or more variables are missing
-  opals <- ag.ds.varexist1(opals, formula)
+  # check that the variables in the formula are (1) available from all the studies
+  # and (2) that they do not contain only missing values (NAs).
+  # exclude studies that fail any of these two checks
+  # get the names of the variables from the formula and the name of the servers/studies
+  xx <- all.vars(formula)
+  variables <- xx[-1]
+  stdname <- names(opals)
+  # call the internal function that carries out the checks
+  keeptrack <- c()
+  for(i in 1: length(opals)){
+    checkres <- datashield.aggregate(opals[i], quote(ag.checkvar1.ds(D, stdname[i], variables)))
+    keeptrack <- append(keeptrack, checkres)
+  }
+  # remove studies which contain variables that failed the checks
+  idx <- which (keeptrack == 1)
+  if(length(idx) > 0){
+    opals <- opals[-idx]
+  }
   
   numstudies<-length(opals)
   beta.vect.next<-NULL

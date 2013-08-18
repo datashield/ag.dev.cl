@@ -7,10 +7,11 @@ Title: ag.dev.cl
 Description: ag.dev.cl
 Depends:
     opal,
-    opaladmin
+    opaladmin,
+    fields
 Collate:
     'ag.ds.contour.plot.R'
     'ag.ds.histogram.R'
     'ag.ds.login.R'
     'ag.ds.glm.R'
-    'ag.ds.varexist1.R'
+    'ag.ds.heatmapplot.R'

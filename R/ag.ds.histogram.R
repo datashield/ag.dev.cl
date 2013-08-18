@@ -5,9 +5,10 @@
 #' histogram objects to plot. The objects to plot do not contain bins with
 #' counts < 5. The function allows for the user to plot disctinct histograms
 #' (one for each study) or a combine histogram that merges the single plots.
-#' @param opals a character strings that represent the URL of the servers where 
-#' the study datasets are stored.
-#' @param numvect vector of values for which the histogram is desired.
+#' @param opals a list of opal object(s) obtained after login in to opal servers;
+#' these objects hold also the data assign to R, as \code{dataframe}, from opal 
+#' datasources. 
+#' @param xvect vector of values for which the histogram is desired.
 #' @param type a character which represent the type of graph to display. 
 #' If \code{type} is set to 'combine', a histogram that merges the single 
 #' plot is displayed. Each histogram is plotted separately if If \code{type} 
@@ -27,28 +28,29 @@
 #' names(opals)
 #' 
 #' # Example 1: plot a combined histogram of the variable 'LAB_TSC' - default behaviour
-#' ag.ds.histogram(opals=opals, numvect=quote(D$LAB_TSC))
+#' ag.ds.histogram(opals=opals, xvect=quote(D$LAB_TSC))
 #' 
 #' # Example 2: Plot the histograms separately (one per study)
-#'  ag.ds.histogram(opals=opals, numvect=quote(D$LAB_TSC), type="split")
+#'  ag.ds.histogram(opals=opals, xvect=quote(D$LAB_TSC), type="split")
 #'  
 #' # Example 3: Plot the histograms of the first and second study
-#'  ag.ds.histogram(opals=opals[1:2], numvect=quote(D$LAB_TSC), type="split")
+#'  ag.ds.histogram(opals=opals[1:2], xvect=quote(D$LAB_TSC), type="split")
 #'
 #' # Example 4: Plot the histogram of the third study only
-#'  ag.ds.histogram(opals=opals[3], numvect=quote(D$LAB_TSC), type="split")
+#'  ag.ds.histogram(opals=opals[3], xvect=quote(D$LAB_TSC), type="split")
 #' }
 
-ag.ds.histogram <- function(opals=NULL, numvect=NULL, type="combine"){
+ag.ds.histogram <- function(opals=opals, xvect=NULL, type="combine"){
+
 
   if(is.null(opals)){
     cat("\n\n ALERT!\n")
     cat(" No valid opal object(s) provided.\n")
-    cat(" Make sure you are looged in opal server(s).\n")
+    cat(" Make sure you are logged in to valid opal server(s).\n")
     stop(" End of process!\n\n", call.=FALSE)
   }
   
-  if(is.null(numvect)){
+  if(is.null(xvect)){
     cat("\n\n ALERT!\n")
     cat(" Please provide a valid numeric vector\n")
     stop(" End of process!\n\n", call.=FALSE)
@@ -60,7 +62,7 @@ ag.ds.histogram <- function(opals=NULL, numvect=NULL, type="combine"){
   density.all <- c()
   
   # call the server side function and generate the histogram objects
-  cally <- call("ag.histogram.ds", numvect) 
+  cally <- call("ag.histogram.ds", xvect) 
   output <- datashield.aggregate(opals, cally)
   for(i in 1:length(opals)){
     obj <- output[[i]]

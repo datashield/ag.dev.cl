@@ -5,8 +5,10 @@
   ag.ds.glm(opals, formula, family, maxit = 10)
 }
 \arguments{
-  \item{opals}{a character strings that represent the URL
-  of the servers where the study datasets are stored}
+  \item{opals}{a list of opal object(s) obtained after
+  login in to opal servers; these objects hold also the
+  data assign to R, as \code{dataframe}, from opal
+  datasources.}
 
   \item{formula}{an object of class \code{formula} which
   describes the model to be fitted}
@@ -49,12 +51,12 @@
   pooled.
 }
 \examples{
-{
+\dontrun{
 # load the file that contains the login details
 data(logindata)
 
 # login and assign some variables to R
-myvar <- list("DIS_DIAB","PM_BMI_CONTINUOUS","LAB_HDL" )
+myvar <- list("DIS_DIAB","PM_BMI_CONTINUOUS","LAB_HDL")
 opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvar)
 
 # run a GLM (e.g. diabetes prediction using BMI and HDL level)
