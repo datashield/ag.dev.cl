@@ -43,6 +43,7 @@ ag.ds.glm <- function(opals, formula, family, maxit=10) {
   # and (2) that they do not contain only missing values (NAs).
   # exclude studies that fail any of these two checks
   # get the names of the variables from the formula and the name of the servers/studies
+  cat("\nChecks are carried out on the variables included in the argument 'formula'\n\n")
   xx <- all.vars(formula)
   variables <- xx[-1]
   stdname <- names(opals)
