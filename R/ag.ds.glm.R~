@@ -53,8 +53,8 @@ ag.ds.glm <- function(opals, formula, family, maxit=10) {
     for(j in 1: length(variables)){
       cally <- call("ag.checkvar1.ds", quote(D), variables[j]) 
       checkres <- datashield.aggregate(opals[i], cally)
-      if(checkres[[1]] == 1) { cat("The variable", variables[j], "is missing from", stdname[i],"!\n") }
-      if(checkres[[1]] == 2) { cat("The variable", variables[j], "in", stdname[i], "is empty (NAs only)!\n") }
+      if(checkres == 1) { cat("The variable", variables[j], "is missing from", stdname[i],"!\n") }
+      if(checkres == 2) { cat("The variable", variables[j], "in", stdname[i], "is empty (NAs only)!\n") }
       keeptrack[[i]][j] <- checkres[[1]]
     }
     if(sum(keeptrack[[i]]) > 0){ cat(stdname[i], "will not be included in the analysis\n\n") }
@@ -70,7 +70,7 @@ ag.ds.glm <- function(opals, formula, family, maxit=10) {
     }
   }
   idx2 <- which(idx1 == 1)
-  if(length(idx2) > 0){ opals <- opals[-idx2] }
+  opals <- opals[-idx2]
   
   # number of studies and vector of beta values
   numstudies<-length(opals)
@@ -100,9 +100,9 @@ ag.ds.glm <- function(opals, formula, family, maxit=10) {
     cat("--------------------------------------------\n")
     cat("Iteration", iteration.count, "\n")
     
-    cally <- as.call(list(quote(ag.glm.ds), formula, family, as.vector(beta.vect.next)));
+    call<-as.call(list(quote(ag.glm.ds), formula, family, as.vector(beta.vect.next)));
     
-    study.summary <- datashield.aggregate(opals, cally);
+    study.summary<-datashield.aggregate(opals, call);
     
     .select <- function(l, field) {
      lapply(l, function(obj) {obj[[field]]})

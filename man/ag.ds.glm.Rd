@@ -51,7 +51,7 @@
   pooled.
 }
 \examples{
-\dontrun{
+{
 # load the file that contains the login details
 data(logindata)
 
