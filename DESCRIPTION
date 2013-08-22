@@ -14,4 +14,3 @@ Collate:
     'ag.ds.histogram.R'
     'ag.ds.login.R'
     'ag.ds.glm.R'
-    'ag.ds.heatmapplot.R'

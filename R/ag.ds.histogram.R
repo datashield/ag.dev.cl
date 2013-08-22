@@ -93,22 +93,25 @@ ag.ds.histogram <- function(opals=opals, xvect=NULL, type="combine"){
         plot(hist.objects[[i]],xlim = xlim, ylim = ylim, xaxt = 'n', yaxt = 'n', col = colour, add = TRUE, freq = FALSE)     
       }
     }
-  }
-  
-  if(type=="split"){
-    # set the graph area and plot
-    ll <- length(opals)
-    colour <- rainbow(ll)
-    if(ll > 1){
-      if((ll %% 2) == 0){ numr <- ll/2 }else{ numr <- (ll+1)/2}
-      numc <- 2
-      par(mfrow=c(numr,numc))
-      for(i in 1:ll){
-        plot(hist.objects[[i]],xlim = xlim, ylim = ylim, col = colour[i],xlab = 'lengths', freq = FALSE, main = names(opals)[i])
+  }else{  
+    if(type=="split"){
+      # set the graph area and plot
+      ll <- length(opals)
+      colour <- rainbow(ll)
+      if(ll > 1){
+        if((ll %% 2) == 0){ numr <- ll/2 }else{ numr <- (ll+1)/2}
+        numc <- 2
+        par(mfrow=c(numr,numc))
+        for(i in 1:ll){
+          plot(hist.objects[[i]],xlim = xlim, ylim = ylim, col = colour[i],xlab = 'lengths', freq = FALSE, main = names(opals)[i])
+        }
+      }else{
+        par(mfrow=c(1,1))
+        plot(hist.objects[[1]],xlim = xlim, ylim = ylim, col = colour[1],xlab = 'lengths', freq = FALSE, main = names(opals)[1])
       }
     }else{
-      par(mfrow=c(1,1))
-      plot(hist.objects[[1]],xlim = xlim, ylim = ylim, col = colour[1],xlab = 'lengths', freq = FALSE, main = names(opals)[1])
+      stop('Function argument "type" has to be either "combine" or "split"')
     }
   }
 }
+
