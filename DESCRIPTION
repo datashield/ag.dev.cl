@@ -10,7 +10,6 @@ Depends:
     opaladmin,
     fields
 Collate:
-    'ag.ds.contour.plot.R'
     'ag.ds.histogram.R'
     'ag.ds.login.R'
     'ag.ds.glm.R'
