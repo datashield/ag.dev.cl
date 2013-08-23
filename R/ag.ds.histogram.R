@@ -24,9 +24,6 @@
 #' myvar <- list("LAB_TSC")
 #' opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvar)
 #' 
-#' # show the name of the studies/servers
-#' names(opals)
-#' 
 #' # Example 1: plot a combined histogram of the variable 'LAB_TSC' - default behaviour
 #' ag.ds.histogram(opals=opals, xvect=quote(D$LAB_TSC))
 #' 
@@ -61,6 +58,12 @@ ag.ds.histogram <- function(opals=opals, xvect=NULL, type="combine"){
   breaks.all <- c()
   density.all <- c()
   
+  # get the name of the variable used for the histogram
+  variables <-  strsplit(deparse(xvect), "\\$", perl=TRUE)[[1]][2]
+  
+  # call the function that checks the variables are available and not empty
+  opals <- ag.ds.checkvar(opals, variables)
+  
   # call the server side function and generate the histogram objects
   cally <- call("ag.histogram.ds", xvect) 
   output <- datashield.aggregate(opals, cally)
@@ -87,7 +90,7 @@ ag.ds.histogram <- function(opals=opals, xvect=NULL, type="combine"){
   if(type=="combine"){
     colour <- "black"
     par(mfrow=c(1,1))
-    plot(hist.objects[[1]],xlim = xlim, ylim = ylim, col = colour,xlab = 'lengths', freq = FALSE, main = 'Pooled Data')
+    plot(hist.objects[[1]],xlim = xlim, ylim = ylim, col = colour,xlab = 'lengths', freq = FALSE, main = 'Histogram of the pooled data')
     if(length(opals) > 1){
       for(i in 2:length(opals)){
         plot(hist.objects[[i]],xlim = xlim, ylim = ylim, xaxt = 'n', yaxt = 'n', col = colour, add = TRUE, freq = FALSE)     

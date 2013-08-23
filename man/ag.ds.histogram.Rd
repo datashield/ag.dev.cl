@@ -41,9 +41,6 @@ data(logindata)
 myvar <- list("LAB_TSC")
 opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvar)
 
-# show the name of the studies/servers
-names(opals)
-
 # Example 1: plot a combined histogram of the variable 'LAB_TSC' - default behaviour
 ag.ds.histogram(opals=opals, xvect=quote(D$LAB_TSC))
 

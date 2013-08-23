@@ -39,41 +39,14 @@
 #'
 ag.ds.glm <- function(opals, formula, family, maxit=10) {
   
-  # check that the variables in the formula are (1) available from all the studies
-  # and (2) that they do not contain only missing values (NAs).
-  # exclude studies that fail any of these two checks
   # get the names of the variables from the formula and the name of the servers/studies
-  cat("\nChecks are carried out on the variables included in the argument 'formula'\n\n")
   xx <- all.vars(formula)
   variables <- xx[-1]
-  stdname <- names(opals)
-  # call the internal function that carries out the checks
-  # a list that keeps the results of the checks for each datasets and each variable in the glm argument 'formula'
-  keeptrack <- vector("list", length(opals))
-  for(i in 1: length(opals)){
-    for(j in 1: length(variables)){
-      cally <- call("ag.checkvar1.ds", quote(D), variables[j]) 
-      checkres <- datashield.aggregate(opals[i], cally)
-      if(checkres[[1]] == 1) { cat("The variable", variables[j], "is missing from", stdname[i],"!\n") }
-      if(checkres[[1]] == 2) { cat("The variable", variables[j], "in", stdname[i], "is empty (NAs only)!\n") }
-      keeptrack[[i]][j] <- checkres[[1]]
-    }
-    if(sum(keeptrack[[i]]) > 0){ cat(stdname[i], "will not be included in the analysis\n\n") }
-  }
   
-  # remove studies which contain one or more variables that failed the checks
-  idx1 <- c()
-  for(i in 1:length(keeptrack)){
-    if(sum(keeptrack[[i]]) > 0){
-      idx1 <- append(idx1, 1)
-    }else{
-      idx1 <- append(idx1, 0)
-    }
-  }
-  idx2 <- which(idx1 == 1)
-  if(length(idx2) > 0){ opals <- opals[-idx2] }
+  # call the function that checks the variables are available and not empty
+  opals <- ag.ds.checkvar(opals, variables)
   
-  # number of studies and vector of beta values
+  # number of 'valid' studies (those that passed the checks) and vector of beta values
   numstudies<-length(opals)
   beta.vect.next<-NULL
   
