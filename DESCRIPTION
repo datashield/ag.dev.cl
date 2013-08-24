@@ -14,3 +14,4 @@ Collate:
     'ag.ds.login.R'
     'ag.ds.glm.R'
     'ag.ds.checkvar.R'
+    'ag.ds.createfactor.R'

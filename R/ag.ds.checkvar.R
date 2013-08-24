@@ -23,7 +23,7 @@ ag.ds.checkvar <- function(opals, variables){
   # loop through the dataset(s) and the variable(s)
   for(i in 1: length(opals)){
     for(j in 1: length(variables)){
-      cally <- call("ag.checkvar1.ds", quote(D), variables[j]) 
+      cally <- call("ag.checkvar.ds", quote(D), variables[j]) 
       checkres <- datashield.aggregate(opals[i], cally)
       if(checkres[[1]] == 1) { cat("The variable", variables[j], "is missing from", stdname[i],"!\n") }
       if(checkres[[1]] == 2) { cat("The variable", variables[j], "in", stdname[i], "is empty (NAs only)!\n") }
