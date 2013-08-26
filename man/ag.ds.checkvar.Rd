@@ -10,7 +10,8 @@
   data assign to R, as \code{dataframe}, from opal
   datasources.}
 
-  \item{variables}{the variables to check}
+  \item{variables}{a character vector, the names of the
+  variable(s) to check}
 }
 \value{
   the opal objects which passed the checks
@@ -20,6 +21,20 @@
   available from all the studies and (2) that they do not
   contain only missing values (NAs). It excludes studies
   that fail any of these two checks
+}
+\examples{
+{
+
+# load that contains the login details
+data(logindata)
+
+# login and assign specific variable(s)
+myvar <- list("LAB_TSC")
+opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvar)
+
+# run checks for the variable LAB_TSC
+ag.ds.checkvar(opals=opals, variables="LAB_TSC")
+}
 }
 \author{
   Gaye, A.

@@ -34,6 +34,7 @@
 }
 \examples{
 {
+
 # load that contains the login details
 data(logindata)
 

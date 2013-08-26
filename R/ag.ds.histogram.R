@@ -17,6 +17,7 @@
 #' @author Gaye, A.
 #' @export
 #' @examples {
+#' 
 #' # load that contains the login details
 #' data(logindata)
 #' 
@@ -36,7 +37,7 @@
 #' # Example 4: Plot the histogram of the third study only
 #'  ag.ds.histogram(opals=opals[3], xvect=quote(D$LAB_TSC), type="split")
 #' }
-
+#'
 ag.ds.histogram <- function(opals=opals, xvect=NULL, type="combine"){
 
 

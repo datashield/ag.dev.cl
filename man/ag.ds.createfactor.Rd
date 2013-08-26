@@ -1,9 +1,9 @@
 \name{ag.ds.createfactor}
 \alias{ag.ds.createfactor}
-\title{create and combines factor vectors}
+\title{create and combines factor vectors.}
 \usage{
   ag.ds.createfactor(opals = NULL, xvect = NULL,
-    type = "split")
+    newvarname = NULL)
 }
 \arguments{
   \item{opals}{a list of opal object(s) obtained after
@@ -11,19 +11,33 @@
   data assign to R, as \code{dataframe}, from opal
   datasources.}
 
-  \item{xvect}{a numeric of character vector}
+  \item{xvect}{a numeric of character vector.}
 
-  \item{type}{tells if the factor vectors should be
-  combined into one vector (\code{type} = "combine") or not
-  (\code{type} = "split")}
+  \item{newvarname}{name of the variable to assigned the
+  created factor to.}
 }
 \value{
-  a list of \code{factor} vectors or one factor vector
+  a list of \code{factor} vectors or one factor vector.
 }
 \description{
-  This function calls a server function that produces
-  vectors into \code{factor} vectors. The factors can be
-  processed separately or concatenated into one vectors.
+  This function calls a server function that generates
+  \code{factor} vectors. If the generated factor is not
+  valid (i.e. if any of the categories has a count > 0 and
+  < 5) its values are replaced by missing values.
+}
+\examples{
+{
+
+# load the login data
+data(logindata)
+
+# login and assign specific variable(s)
+myvar <- list("GENDER")
+opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvar)
+
+# create a factor vector of the variable 'GENDER', one for each study
+ag.ds.createfactor(opals=opals, "sex", xvect=quote(D$GENDER))
+}
 }
 \author{
   Gaye, A.
