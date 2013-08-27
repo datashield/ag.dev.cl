@@ -38,8 +38,7 @@
   tells how well the model fits
 }
 \description{
-  This function allows for the fitting of generalized
-  linear models to non-pooled data.
+  Runs a combined GLM analysis of non-pooled data
 }
 \details{
   It enables a parallelized analysis of individual-level

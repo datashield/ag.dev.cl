@@ -55,7 +55,7 @@ ag.ds.login <- function(logins, assign=FALSE, variables=NULL){
   
   # login to the oplas keeping the server names as 
   # specified in the login file
-  cat("\nLog in to the collaborating servers\n\n")
+  cat("\nLogging into the collaborating servers\n\n")
   opals <- vector("list", length(urls))
   names(opals) <- as.character(logins[,1])
   for(i in 1:length(opals)) {

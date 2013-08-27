@@ -1,7 +1,5 @@
-#' This function allows for the fitting of generalized linear models to non-pooled data. 
 #' 
 #' @title Runs a combined GLM analysis of non-pooled data
-#'
 #' @param opals a list of opal object(s) obtained after login in to opal servers;
 #' these objects hold also the data assign to R, as \code{dataframe}, from opal 
 #' datasources.

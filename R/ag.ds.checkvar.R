@@ -83,7 +83,7 @@ ag.ds.checkvar <- function(opals, variables){
   if(length(toremove) > 0){
     opals <- opals[-toremove] 
   }else{
-    cat("The checks went fine: no missing variable and no empty variable!\n\n")
+    cat("The checks went fine: no missing or empty variable(s)!\n\n")
   }
   
   # If none of the datasets passed the checks stop the process
