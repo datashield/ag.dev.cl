@@ -1,10 +1,9 @@
-#' login function required at the start of a DataSHIELD process
 #' 
-#' @title Log in and assign variables to R
+#' @title Logs in and assigns variables to R
 #' @description This function allows for clients to login to opal servers 
 #' and (optionaly) assign all the data or specific variables from Opal 
 #' datasources to R. The assigned dataframes (one for each opal server) 
-#' are named "D".
+#' are named 'D'.
 #' @param logins a dataframe that holds login details
 #' @param assign a boolean which tells whether or not data should 
 #' from the opal datasource to R after login into the server(s).
@@ -29,15 +28,12 @@
 #' opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvar)
 #' }
 #' 
-ag.ds.login <- function(logins, assign=FALSE, variables=NULL){
-
-  # load the required libraries.
-  # to do anything in datashield you need to load 
-  # the 'opal' library so the login stage is the right place.
-  # administrators may need the 'opaladmin' library, so load it too.
-  library(opal)
-  library(opaladmin)
+ag.ds.login <- function(logins=NULL, assign=FALSE, variables=NULL){
   
+  if(is.null(logins)){
+    stop(" Provide valid login details!\n\n")
+  }
+
   # URLs 
   urls <- as.character(logins[,2])
   
@@ -55,7 +51,7 @@ ag.ds.login <- function(logins, assign=FALSE, variables=NULL){
   
   # login to the oplas keeping the server names as 
   # specified in the login file
-  cat("\nLogging into the collaborating servers\n\n")
+  cat("\nLogging into the collaborating servers\n")
   opals <- vector("list", length(urls))
   names(opals) <- as.character(logins[,1])
   for(i in 1:length(opals)) {
@@ -74,20 +70,19 @@ ag.ds.login <- function(logins, assign=FALSE, variables=NULL){
       cat("\n  No variables have been specified. \n  All the variables in the opal datasource \n  (the whole dataset) will be assigned to R!\n\n")
       cat("Assigining data\n\n")
       for(i in 1:length(opals)) {
-          datashield.assign(opals[[i]], "D", paths[i])
+        datashield.assign(opals[[i]], "D", paths[i])
       }
+      cat("Variables assigned:\n")
+      varnames <- datashield.aggregate(opals[1], quote(colnames(D)))
+      cat(paste(unlist(varnames), collapse=", "), "\n\n")
     }else{
       cat("Assigining data\n\n")
       for(i in 1:length(opals)) {
           datashield.assign(opals[[i]], "D", paths[i], variables)
       }
-    }
-      # display the name of the variable that have been assigned
-      # since variables have the same name in all servers just display 
-      # names for one server only
       cat("Variables assigned:\n")
-      var.names <- datashield.aggregate(opals[[1]], quote(colnames(D)))
-      cat(paste(var.names,collapse=", "),"\n\n")
+      cat(paste(unlist(variables), collapse=", ", "\n\n"))
+    }
   }
   # return the 'opals' object
   return(opals)

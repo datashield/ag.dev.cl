@@ -44,7 +44,8 @@ ag.ds.createfactor <- function(opals=NULL, xvect=NULL, newvarname=NULL){
   var <-  strsplit(deparse(xvect), "\\$", perl=TRUE)[[1]][2]
   
   # call the function that checks the variables are available and not empty
-  opals <- ag.ds.checkvar(opals, var)
+  vars2check <- list(xvect)
+  opals <- ag.ds.checkvar(opals, vars2check)
   
   # if no name has been specified for the newly created factor
   # use the name of the input variable

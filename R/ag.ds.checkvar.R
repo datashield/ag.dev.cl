@@ -20,7 +20,7 @@
 #' opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvar)
 #' 
 #' # run checks for the variable LAB_TSC
-#' ag.ds.checkvar(opals=opals, variables="LAB_TSC")
+#' ag.ds.checkvar(opals=opals, variables=list(quote(D$LAB_TSC)))
 #' }
 #'
 ag.ds.checkvar <- function(opals, variables){
@@ -31,7 +31,11 @@ ag.ds.checkvar <- function(opals, variables){
   stdname <- names(opals)
   
   # get the names of the variables to check
-  varIDs <- variables
+  varIDs <- vector("character", length(variables))
+  for(i in 1:length(variables)){
+    xx <- variables[[i]]
+    varIDs[i] <- strsplit(deparse(xx), "\\$", perl=TRUE)[[1]][2]
+  }
   
   # a vector that keeps the results of the checks for each study
   toremove <- c()
@@ -42,7 +46,6 @@ ag.ds.checkvar <- function(opals, variables){
     # Carry out the first check:  are all the variables to analyse available from dataset
     track <- FALSE
     # get the names of the variables in the assigned dataset
-    #cally1 <- call("colnames", D)
     var.names <- datashield.aggregate(opals[i], quote(colnames(D)))   
     
     # check if any of the variables in the arguments is missing from the assigned dataset
@@ -62,7 +65,7 @@ ag.ds.checkvar <- function(opals, variables){
       idx2 <- which(var.names[[1]] %in% varIDs)
       for(j in idx2){
         # the server side function 'isNA.ds' to check if vector is empty
-        cally <- call("ag.isNA.ds", variables[j])
+        cally <- call("ag.isNA.ds", variables[[j]])
         out <- datashield.aggregate(opals[i], cally)
         if(out[[1]]){ 
           track <- TRUE

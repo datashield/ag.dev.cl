@@ -16,3 +16,4 @@ Collate:
     'ag.ds.checkvar.R'
     'ag.ds.createfactor.R'
     'ag.ds.quantilemean.R'
+    'ag.ds.t.test.R'

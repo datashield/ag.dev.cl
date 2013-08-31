@@ -1,8 +1,9 @@
 \name{ag.ds.login}
 \alias{ag.ds.login}
-\title{Log in and assign variables to R}
+\title{Logs in and assigns variables to R}
 \usage{
-  ag.ds.login(logins, assign = FALSE, variables = NULL)
+  ag.ds.login(logins = NULL, assign = FALSE,
+    variables = NULL)
 }
 \arguments{
   \item{logins}{a dataframe that holds login details}
@@ -24,11 +25,7 @@
   This function allows for clients to login to opal servers
   and (optionaly) assign all the data or specific variables
   from Opal datasources to R. The assigned dataframes (one
-  for each opal server) are named "D".
-}
-\details{
-  login function required at the start of a DataSHIELD
-  process
+  for each opal server) are named 'D'.
 }
 \examples{
 {

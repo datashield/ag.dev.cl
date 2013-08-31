@@ -58,7 +58,8 @@ ag.ds.histogram <- function(opals=opals, xvect=NULL, type="combine"){
   variable <-  strsplit(deparse(xvect), "\\$", perl=TRUE)[[1]][2]
   
   # call the function that checks the variables are available and not empty
-  opals <- ag.ds.checkvar(opals, variable)
+  vars2check <- list(xvect)
+  opals <- ag.ds.checkvar(opals, vars2check)
   
   # get the range from each studyand produce the 'global' range
   cally1 <- call("ag.range.ds", xvect) 
@@ -117,12 +118,24 @@ ag.ds.histogram <- function(opals=opals, xvect=NULL, type="combine"){
         par(mfrow=c(numr,numc))
         for(i in 1:ll){
           plot(hist.objs[[i]], col=colour[i], xlab=variable, main=paste("Histogram of ", names(opals)[i], sep=""))
-          text(asterix2plot[[i]], rep(10, length(asterix2plot[[i]])), "*", pos=3, cex=1.2)
+          # if there are cells with count > 0 and < mention them as an '*' on the graph
+          if(length(asterix2plot[[i]]) > 0){
+            text(asterix2plot[[i]], rep(10, length(asterix2plot[[i]])), "*", pos=3, cex=1.2)
+            xpos <-  min(hist.objs[[i]]$breaks, na.rm=TRUE)
+            ypos <-  max(hist.objs[[i]]$counts, na.rm=TRUE)
+            text(xpos, ypos, "'*' Cells were 0 < count < 5", pos=3, cex=1.2)
+          }
         }
       }else{
         par(mfrow=c(1,1))
         plot(hist.objs[[1]], col=colour[1], xlab=variable, main=paste("Histogram of ", names(opals)[1], sep=""))
-        text(asterix2plot[[1]], rep(10, length(asterix2plot[[1]])), "*", pos=3, cex=1.2)
+        # if there are cells with count > 0 and < mention them as an '*' on the graph
+        if(length(asterix2plot[[1]]) > 0){
+          text(asterix2plot[[1]], rep(10, length(asterix2plot[[1]])), "*", pos=3, cex=1.2)
+          xpos <-  min(hist.objs[[1]]$breaks, na.rm=TRUE)
+          ypos <-  max(hist.objs[[1]]$counts, na.rm=TRUE)
+          text(xpos, ypos, "'*' Cells were 0 < count < 5", pos=3, cex=1.2)
+        }
       }
     }else{
       stop('Function argument "type" has to be either "combine" or "split"')

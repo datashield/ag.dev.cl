@@ -55,7 +55,8 @@ ag.ds.quantilemean <- function(opals=NULL, xvect=NULL, type="combine"){
   variable <-  strsplit(deparse(xvect), "\\$", perl=TRUE)[[1]][2]
   
   # call the function that checks the variable is available and not empty
-  opals <- ag.ds.checkvar(opals, variable)
+  vars2check <- list(xvect)
+  opals <- ag.ds.checkvar(opals, vars2check)
   
   # get the server function that produces the quantiles
   cally1 <- call("ag.quantilemean.ds", xvect) 

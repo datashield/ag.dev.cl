@@ -33,7 +33,7 @@ myvar <- list("LAB_TSC")
 opals <- ag.ds.login(logins=logindata,assign=TRUE,variables=myvar)
 
 # run checks for the variable LAB_TSC
-ag.ds.checkvar(opals=opals, variables="LAB_TSC")
+ag.ds.checkvar(opals=opals, variables=list(quote(D$LAB_TSC)))
 }
 }
 \author{
