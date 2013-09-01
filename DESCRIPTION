@@ -17,3 +17,5 @@ Collate:
     'ag.ds.createfactor.R'
     'ag.ds.quantilemean.R'
     'ag.ds.t.test.R'
+    'ag.ds.contourplot.R'
+    'ag.ds.heatmapplot.R'

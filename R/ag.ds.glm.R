@@ -22,7 +22,7 @@
 #' @return aic A version of Akaike's An Information Criterion, which tells how 
 #' well the model fits
 #' @author Burton, P.; Laflamme, P.; Gaye, A.
-#' @examples \dontrun{
+#' @examples {
 #' # load the file that contains the login details
 #' data(logindata)
 #' 
@@ -42,8 +42,8 @@ ag.ds.glm <- function(opals, formula, family, maxit=10) {
   variables <- xx[-1]
   
   # call the function that checks the variables are available and not empty
-  vars2check <- list(variables)
-  opals <- ag.ds.checkvar(opals, vars2check)
+  #vars2check <- list(variables)
+  #opals <- ag.ds.checkvar(opals, vars2check)
   
   # number of 'valid' studies (those that passed the checks) and vector of beta values
   numstudies<-length(opals)

@@ -81,7 +81,7 @@ ag.ds.login <- function(logins=NULL, assign=FALSE, variables=NULL){
           datashield.assign(opals[[i]], "D", paths[i], variables)
       }
       cat("Variables assigned:\n")
-      cat(paste(unlist(variables), collapse=", ", "\n\n"))
+      cat(paste(unlist(variables), collapse=", "), "\n\n")
     }
   }
   # return the 'opals' object

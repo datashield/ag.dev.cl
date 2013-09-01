@@ -1,6 +1,8 @@
 export(ag.ds.checkvar)
+export(ag.ds.contourplot)
 export(ag.ds.createfactor)
 export(ag.ds.glm)
+export(ag.ds.heatmapplot)
 export(ag.ds.histogram)
 export(ag.ds.login)
 export(ag.ds.quantilemean)
